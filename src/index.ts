@@ -1,7 +1,8 @@
+import "dotenv/config"; // configure dotenv
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { ollamaApiV1 } from "./api";
+import { ollamaApiV1, presignedUrlApiV1 } from "./api";
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.get("/", (_req: Request, res: Response) => {
 
 // OLLAMA API
 app.post("/v1/ollama", ollamaApiV1);
+
+// AWS S3 PRESIGNED URL
+app.post("/v1/get-presigned-url", presignedUrlApiV1);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
