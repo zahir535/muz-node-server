@@ -2,7 +2,7 @@ import "dotenv/config"; // configure dotenv
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { ollamaApiV1, presignedUrlApiV1 } from "./api";
+import { ollamaApiV1, openApiV1, presignedUrlApiV1 } from "./api";
 
 const app = express();
 
@@ -19,8 +19,9 @@ app.get("/", (_req: Request, res: Response) => {
   return res.send("Express Typescript on Vercel");
 });
 
-// OLLAMA API
+// OLLAMA API & OPENAI API
 app.post("/v1/ollama", ollamaApiV1);
+app.post("/v1/openapi", openApiV1);
 
 // AWS S3 PRESIGNED URL
 app.post("/v1/get-presigned-url", presignedUrlApiV1);
