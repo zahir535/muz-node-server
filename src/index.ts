@@ -2,7 +2,7 @@ import "dotenv/config"; // configure dotenv
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { ollamaApiV1, openApiV1, presignedUrlApiV1 } from "./api";
+import { ollamaApiV1, openApiV1, presignedUrlApiV1, tesseractV1 } from "./api";
 
 const app = express();
 
@@ -25,6 +25,9 @@ app.post("/v1/openapi", openApiV1);
 
 // AWS S3 PRESIGNED URL
 app.post("/v1/get-presigned-url", presignedUrlApiV1);
+
+// TESSERACT
+app.get("/v1/tesseract-get", tesseractV1);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
